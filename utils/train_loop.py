@@ -53,7 +53,7 @@ def DDPM_train_loop(model,
 
             generated_img_step = denoise_sample_loop(model=model, steps=time_steps, diff_vars=diff_vars, n_samples=50, channels=images.shape[1], img_width=images.shape[2], img_height=images.shape[3], device=device)
             final_generated_img = generated_img_step[-1]
-            save_images(final_generated_img, os.path.join(img_dir, f'{epoch}'))
+            save_images(final_generated_img, os.path.join(img_dir, f'{epoch+1}'))
 
     print('Training finished.')
     torch.save(model.state_dict(), os.path.join(model_dir, 'final_model.pth'))
