@@ -58,3 +58,7 @@ def main():
     )
 
     save_images(imgs, args.generate_img_dir)
+
+
+if __name__ == '__main__':
+    main()
