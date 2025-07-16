@@ -5,8 +5,7 @@ from utils.train_loop import DDPM_train_loop
 
 from model.UNet import UNet
 
-from torch import optim
-from torch import nn
+from torch import optim, nn
 import torch
 
 
@@ -36,10 +35,12 @@ def main():
     model_type = args.model_type
     device = torch.device(f'cuda:{args.gpu}' if torch.cuda.is_available() else 'cpu')
     if model_type == 'UNet':
-        model = UNet(in_ch=channels,
-                     out_ch=channels,
-                     time_embedding_dim=time_embedding_dim,
-                     dim=latent_dim).to(device)
+        model = UNet(
+            in_ch=channels,
+            out_ch=channels,
+            time_embedding_dim=time_embedding_dim,
+            dim=latent_dim
+        ).to(device)
     else:
         raise ValueError('We have not provided this model for DDPM.')
     optimizer = optim.AdamW(model.parameters(), lr=lr)
